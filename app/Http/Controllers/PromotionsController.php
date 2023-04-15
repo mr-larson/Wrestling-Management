@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePromotionsRequest;
 use App\Http\Requests\UpdatePromotionsRequest;
 use App\Models\Promotions;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -34,29 +35,25 @@ class PromotionsController extends Controller
 
     return view('management.promotions.index', compact('promotions', 'orderBy'));
     }
-
-    
-
     
     public function create(): View
     {
-        return view('management.promotions.create');
+        $promotion = new Promotions();
+        return view('management.promotions.create', compact('promotion'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StorePromotionsRequest $request)
+    public function store(StorePromotionsRequest $request): RedirectResponse
     {
-        //
+        $promotion = new Promotions();
+        $promotion->fill($request->validated());
+        $promotion->save();
+
+        return redirect()->route('management.promotions.index')->with('success', 'Promotion created successfully');;
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Promotions $promotions)
+    public function show(Promotions $promotions): View
     {
-        //
+        return view('management.promotions.show', compact('promotions'));
     }
 
     /**

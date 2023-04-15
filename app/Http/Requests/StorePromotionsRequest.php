@@ -22,7 +22,9 @@ class StorePromotionsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string|max:255',
+            'image' => 'nullable|image|max:1024',
         ];
     }
 }

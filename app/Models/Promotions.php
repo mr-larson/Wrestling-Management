@@ -10,6 +10,7 @@ class Promotions extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    
     protected $table = 'promotions';
 
     protected $fillable = [

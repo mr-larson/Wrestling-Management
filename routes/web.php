@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::prefix('management')->group(function(){
-    Route::resource('promotions', PromotionsController::class)->middleware('auth');
+    Route::resource('promotions', PromotionsController::class);
 });
 
 require __DIR__.'/auth.php';

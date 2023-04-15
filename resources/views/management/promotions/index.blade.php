@@ -1,17 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Promotions') }}
-        </h2>
+        <x-h2>{{ __('Promotions') }}</x-h2>
     </x-slot>
-    
-    <div class="p-4 sm:ml-64 mt-14">
+    <x-success-message class="mb-4"></x-success-message>
+    <div class="p-4 sm:ml-56 mt-14">
         <div class="flex items-center justify-between pb-4">
             <div>
-                <a href="{{ route('promotions.create') }}" class="text-white bg-gradient-to-r from-blue-400 to-blue-500 border-blue-900 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
-                    <i class="fas fa-plus text-white"></i>
-                    <span class="ml-2">Create</span>
-                </a>
+                <x-btn-create href="{{ route('promotions.create') }}" :href="route('promotions.create')" :fas="'plus'"> Create </x-btn-create>
             </div>
             <div>
                 <label for="table-search" class="sr-only">Search</label>
@@ -25,7 +20,7 @@
         </div>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-100 uppercase bg-gradient-to-r from-blue-400 to-blue-500 dark:bg-gray-700 dark:text-gray-400">
+                <thead class="text-xs text-gray-100 uppercase bg-gradient-to-r from-blue-400 to-blue-500 dark:bg-gray-700 dark:text-gray-100">
                     <tr>
                         <x-sortable-header :value="'name'" :route="'promotions.index'" :orderBy="$orderBy">Name</x-sortable-header>
                         <th scope="col" class="px-6 py-3">Description</th>
