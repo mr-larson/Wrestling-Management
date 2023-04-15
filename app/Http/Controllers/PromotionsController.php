@@ -10,41 +10,37 @@ use Illuminate\View\View;
 
 class PromotionsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request): View
     {
-        /**
-        $query = Promotions::all();
-        $orderBy = $request->get('orderBy', 'name');
-        switch ($orderBy) {
-            case 'created_at':
-                $query->orderBy('created_at');
-                break;
-            case 'created_at-desc':
-                $query->orderBy('created_at', 'desc');
-                break;
-            case 'name-desc':
-                $query->orderBy('name', 'desc');
-            default:
-                $query->orderBy('name');
-            }
-        $promotions = $query->paginate(10)->appends($request->query());
+    $query = Promotions::query();
 
-        return view('management.promotions.index', compact('promotions', 'orderBy')); 
-        */
-        $promotions = Promotions::all();
+    $orderBy = $request->get('orderBy', 'name');
 
-        return view('management.promotions.index', compact('promotions')); 
+    switch ($orderBy) {
+        case 'created_at':
+            $query = $query->orderBy('created_at');
+            break;
+        case 'created_at-desc':
+            $query = $query->orderBy('created_at', 'desc');
+            break;
+        case 'name-desc':
+            $query = $query->orderBy('name', 'desc');
+            break;
+        default:
+            $query = $query->orderBy('name');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    $promotions = $query->paginate(10)->appends($request->query());
+
+    return view('management.promotions.index', compact('promotions', 'orderBy'));
+    }
+
+    
+
+    
+    public function create(): View
     {
-        //
+        return view('management.promotions.create');
     }
 
     /**
