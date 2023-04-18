@@ -1,15 +1,24 @@
 <x-app-layout>
     <x-slot name="header">
-        <x-h2>{{ __('Create Promotions') }}</x-h2>
+        <x-h1>{{ __('Promotions') }}</x-h1>
     </x-slot>
-    <div class="p-4 sm:ml-64 mt-14">
-        <x-errors-message></x-errors-message>
-        <form method="POST" action="{{route("promotions.store") }}">
-            @csrf
-            @include('management.promotions.form')
-            <div class="flex justify-center m-2">
-                <x-btn-submit type="submit">Submit</x-btn-submit>
-            </div>
-        </form>
-    </div>
+    <x-card-form>
+        <section class="max-w-xl">
+            <header>
+                <x-h2>
+                    {{ __('Create Promotion') }}
+                </x-h2>
+                <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                    {{ __('To create a promotion, you just need a name.') }}
+                </p>
+            </header>
+            <form method="POST" action="{{route("promotions.store") }}" enctype="multipart/form-data">
+                @csrf
+                @include('management.promotions.form')
+                <div class="flex justify-center m-2">
+                    <x-btn-submit>{{ __('Save') }}</x-btn-submit>
+                </div>
+            </form>
+        </section>
+    </x-card-form>
 </x-app-layout>
