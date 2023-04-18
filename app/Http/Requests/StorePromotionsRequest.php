@@ -11,7 +11,7 @@ class StorePromotionsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class StorePromotionsRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:255',
-            'image' => 'nullable|image|max:1024',
+            'image' => 'nullable|image',
         ];
     }
 }
