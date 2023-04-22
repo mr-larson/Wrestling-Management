@@ -2,11 +2,14 @@
     <x-slot name="header">
         <x-h2>{{ __('Promotions') }}</x-h2>
     </x-slot>
-    <x-success-message></x-success-message>
+    
     <div class="p-4 sm:ml-56 mt-14">
         <div class="flex flex-wrap items-center justify-between p-4">
             <div class="w-full sm:w-auto mb-4 sm:mb-0 sm:mr-4">
                 <x-btn-create href="{{ route('promotions.create') }}" :href="route('promotions.create')" :fas="'plus'"> Create </x-btn-create>
+            </div>
+            <div class="w-full sm:w-auto mb-4 sm:mb-0 sm:mr-4 items-center">
+                <x-success-message></x-success-message>
             </div>
             <div class="w-full sm:w-auto">
                 <label for="table-search" class="sr-only">Search</label>
@@ -37,7 +40,7 @@
                             {{ $promotion?->name }}
                         </th>
                         <td class="px-6 py-4">
-                            <img src="{{ asset('public/images/' . $promotion->image) }}" alt="{{ $promotion->name }}">
+                            <img src="{{ asset('storage/images/promotions' . $promotion->image) }}" alt="{{ $promotion->name }}">
                         </td>
                         <td class="px-6 py-4">
                             {{ $promotion?->created_at ?? '-' }}

@@ -13,27 +13,27 @@ class PromotionsController extends Controller
 {
     public function index(Request $request): View
     {
-    $query = Promotions::query();
+        $query = Promotions::query();
 
-    $orderBy = $request->get('orderBy', 'name');
+        $orderBy = $request->get('orderBy', 'name');
 
-    switch ($orderBy) {
-        case 'created_at':
-            $query = $query->orderBy('created_at');
-            break;
-        case 'created_at-desc':
-            $query = $query->orderBy('created_at', 'desc');
-            break;
-        case 'name-desc':
-            $query = $query->orderBy('name', 'desc');
-            break;
-        default:
-            $query = $query->orderBy('name');
-    }
+        switch ($orderBy) {
+            case 'created_at':
+                $query = $query->orderBy('created_at');
+                break;
+            case 'created_at-desc':
+                $query = $query->orderBy('created_at', 'desc');
+                break;
+            case 'name-desc':
+                $query = $query->orderBy('name', 'desc');
+                break;
+            default:
+                $query = $query->orderBy('name');
+        }
 
-    $promotions = $query->paginate(10)->appends($request->query());
+        $promotions = $query->paginate(10)->appends($request->query());
 
-    return view('management.promotions.index', compact('promotions', 'orderBy'));
+        return view('management.promotions.index', compact('promotions', 'orderBy'));
     }
     
     public function create(): View
@@ -44,6 +44,7 @@ class PromotionsController extends Controller
 
     public function store(StorePromotionsRequest $request): RedirectResponse
     {
+
             // Vérifier si un fichier a été uploadé
         if ($request->hasFile('image')) {
             // Récupérer le nom du fichier
@@ -55,7 +56,7 @@ class PromotionsController extends Controller
         }
 
         // Créer la promotion
-        $promotion = Promotions::create($request->validated());
+        Promotions::create($request->all());
 
         return redirect()->route('promotions.index')->with('success', 'Promotion created successfully');
     }
