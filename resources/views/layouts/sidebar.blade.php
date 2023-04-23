@@ -7,7 +7,7 @@
             </x-nav-link>            
          </li>
          <li>
-            <x-nav-link :href="route('promotions.index')" :active="request()->routeIs('promotions.*')" :fas="'building'">
+            <x-nav-link :href="route('promotion.index')" :active="request()->routeIs('promotion.*')" :fas="'building'">
                   {{ __('Promotions') }}
             </x-nav-link>  
          </li>

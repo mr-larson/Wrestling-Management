@@ -7,7 +7,30 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 
-class Promotions extends Model
+
+/*property string $name
+ *property string $description
+ *property string $image
+ *property int $user_id
+ *property \Illuminate\Support\Carbon $created_at
+ *property \Illuminate\Support\Carbon $updated_at
+ *property \Illuminate\Support\Carbon $deleted_at
+ */
+
+class Promo
+{
+    public function __construct(
+        public string $name,
+        public string $description,
+        public string $image,
+        public int $user_id,
+        public \Illuminate\Support\Carbon $created_at,
+        public \Illuminate\Support\Carbon $updated_at,
+        public \Illuminate\Support\Carbon $deleted_at,
+    ) {
+    }
+}
+class Promotion extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -18,6 +41,7 @@ class Promotions extends Model
         'name',
         'description',
         'image',
+        'user_id',
     ];
 
     protected $hidden = [
@@ -42,5 +66,15 @@ class Promotions extends Model
         $path = $value->store('public/images/promotions');
 
         $this->attributes['image'] = Storage::url($path);
+    }
+
+    public function getImageAttribute($value)
+    {
+        return $value ? Storage::url($value) : null;
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

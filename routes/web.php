@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\PromotionsController;
+use App\Http\Controllers\PromotionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,8 +29,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::prefix('management')->group(function(){
-    Route::resource('promotions', PromotionsController::class);
+Route::prefix('management')->group(function () {
+    Route::get('promotion/search', [PromotionController::class, 'search'])->name('promotion.search');
+    Route::resource('promotion', PromotionController::class);
 });
+
 
 require __DIR__.'/auth.php';
