@@ -32,7 +32,7 @@
                             {{ $promotion?->name }}
                         </th>
                         <td class="px-6 py-4">
-                            <img src="{{ asset('storage/images/promotions' . $promotion->image) }}" alt=" ">
+                            <img src="{{ asset('storage/app/public/images/promotions' . $promotion->image) }}" alt=" ">
                         </td>
                         <td class="px-6 py-4">
                             {{ $promotion?->created_at->format('d/m/Y') ?? '-' }}
