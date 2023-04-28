@@ -26,18 +26,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($promotions as $promotion)
+                    @forelse ($promotions as $promotion) 
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ $promotion?->name }}
                         </th>
                         <td class="px-6 py-4">
-                            <img src="{{ asset('storage/app/public/images/promotions' . $promotion->image) }}" alt=" ">
+                            <img src="/storage/{{ $promotion->image }}" >
                         </td>
                         <td class="px-6 py-4">
                             {{ $promotion?->created_at->format('d/m/Y') ?? '-' }}
                         </td>
-                        <td class="px-6 py-4 text-right">
+                        <td class="px-6 py-4 text-right">   
                             <x-btn-group>
                                 <x-btn-show :action="route('promotion.show', ['promotion' => $promotion])"></x-btn-show>
                                 <x-btn-edit :action="route('promotion.edit', ['promotion' => $promotion])"></x-btn-edit>

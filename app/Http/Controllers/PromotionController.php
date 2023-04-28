@@ -7,6 +7,7 @@ use App\Http\Requests\UpdatePromotionRequest;
 use App\Models\Promotion;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class PromotionController extends Controller
@@ -53,21 +54,24 @@ class PromotionController extends Controller
      */
     public function store(StorePromotionRequest $request): RedirectResponse
     {
-            // Vérifier si un fichier a été uploadé
-            if ($request->hasFile('image')) {
-                // Récupérer le nom du fichier
-                $fileName = time() . '.' . $request->image->getClientOriginalExtension();
-                // Déplacer le fichier dans le dossier de stockage
-                $request->image->storeAs('public/images/promotions', $fileName);
-                // Enregistrer le nom du fichier dans la base de données
-                $request->merge(['image' => $fileName]);
-            }
-    
-            // Créer la promotion
-            Promotion::create($request->all());
-    
-            return redirect()->route('promotion.index')->with('success', 'Promotion created successfully');
+        $promotion = new Promotion();
+
+        // Vérifier si un fichier a été uploadé
+        if ($request->hasFile('image')) {
+            // Récupérer le nom du fichier
+            $fileName = time() . '.' . $request->image->getClientOriginalExtension();
+            // Déplacer le fichier dans le dossier de stockage
+            $request->image->storeAs('public/images/promotions', $fileName);
+            // Enregistrer le nom du fichier dans la base de données
+            $request->merge(['image' => $fileName]);
+        }
+
+        // Créer la promotion
+        $promotion->create($request->all());
+
+        return redirect()->route('promotion.index')->with('success', 'Promotion created successfully');
     }
+
 
 
     /**
@@ -99,6 +103,8 @@ class PromotionController extends Controller
             $request->image->storeAs('public/images/promotions', $fileName);
             // Enregistrer le nom du fichier dans la base de données
             $request->merge(['image' => $fileName]);
+            // Supprimer l'ancienne image
+            Storage::delete('public/' . $promotion->image);
         }
 
         // Mettre à jour la promotion
@@ -106,6 +112,7 @@ class PromotionController extends Controller
 
         return redirect()->route('promotion.index')->with('success', 'Promotion updated successfully');
     }
+
 
     /**
      * Remove the specified resource from storage.

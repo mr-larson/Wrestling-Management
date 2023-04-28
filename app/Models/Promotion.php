@@ -6,30 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
+use Spatie\MediaLibrary\HasMedia;
 
-
-/*property string $name
- *property string $description
- *property string $image
- *property int $user_id
- *property \Illuminate\Support\Carbon $created_at
- *property \Illuminate\Support\Carbon $updated_at
- *property \Illuminate\Support\Carbon $deleted_at
+/**
+ * @mixin IdeHelperPromotion
  */
-
-class Promo
-{
-    public function __construct(
-        public string $name,
-        public string $description,
-        public string $image,
-        public int $user_id,
-        public \Illuminate\Support\Carbon $created_at,
-        public \Illuminate\Support\Carbon $updated_at,
-        public \Illuminate\Support\Carbon $deleted_at,
-    ) {
-    }
-}
 class Promotion extends Model
 {
     use HasFactory;
@@ -63,15 +44,17 @@ class Promotion extends Model
             return;
         }
 
-        $path = $value->store('public/images/promotions');
+        $path = $value->store('images/promotions', 'public');
 
-        $this->attributes['image'] = Storage::url($path);
+        $this->attributes['image'] = $path;
     }
+
 
     public function getImageAttribute($value)
     {
-        return $value ? Storage::url($value) : null;
+        return $value ? str_replace('/storage/', '', Storage::url($value)) : null;
     }
+
 
     public function user()
     {
