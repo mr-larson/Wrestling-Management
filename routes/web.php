@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\WorkerController;  
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,8 +31,12 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::prefix('management')->group(function () {
+    //Promotion
     Route::get('promotion/search', [PromotionController::class, 'search'])->name('promotion.search');
     Route::resource('promotion', PromotionController::class);
+    //Worker
+    Route::get('worker/search', [WorkerController::class, 'search'])->name('worker.search');
+    Route::resource('worker', WorkerController::class);
 });
 
 

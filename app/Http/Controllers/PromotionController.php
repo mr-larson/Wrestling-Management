@@ -113,7 +113,6 @@ class PromotionController extends Controller
         return redirect()->route('promotion.index')->with('success', 'Promotion updated successfully');
     }
 
-
     /**
      * Remove the specified resource from storage.
      */

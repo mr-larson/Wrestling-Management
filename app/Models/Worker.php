@@ -6,23 +6,24 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
-use Spatie\MediaLibrary\HasMedia;
 
 /**
- * @mixin IdeHelperPromotion
+ * @mixin IdeHelperWorker
  */
-class Promotion extends Model
+class Worker extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    
-    protected $table = 'promotions';
+
+    protected $table = 'workers';
 
     protected $fillable = [
-        'name',
-        'description',
+        'last_name',
+        'first_name',
+        'note',
         'image',
         'user_id',
+        'promotion_id',
     ];
 
     protected $hidden = [
@@ -37,6 +38,19 @@ class Promotion extends Model
         'deleted_at' => 'datetime',
     ];
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($worker) {
+            $worker->last_name = strtoupper($worker->last_name);
+        });
+
+        static::updating(function ($worker) {
+            $worker->last_name = strtoupper($worker->last_name);
+        });
+    }
+    
     public function setImageAttribute($value)
     {
         if (is_string($value)) {
@@ -44,25 +58,23 @@ class Promotion extends Model
             return;
         }
 
-        $path = $value->store('images/promotions', 'public');
+        $path = $value->store('images/workers', 'public');
 
         $this->attributes['image'] = $path;
     }
-
 
     public function getImageAttribute($value)
     {
         return $value ? str_replace('/storage/', '', Storage::url($value)) : null;
     }
 
-
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function workers()
+    public function promotion()
     {
-        return $this->hasMany(Worker::class);
+        return $this->belongsTo(Promotion::class);
     }
 }

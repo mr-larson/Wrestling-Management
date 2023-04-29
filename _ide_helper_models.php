@@ -78,3 +78,39 @@ namespace App\Models{
 	class IdeHelperUser {}
 }
 
+namespace App\Models{
+/**
+ * App\Models\Worker
+ *
+ * @property int $id
+ * @property string $last_name
+ * @property string $first_name
+ * @property string|null $note
+ * @property string|null $image
+ * @property int $user_id
+ * @property int $promotion_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @method static \Database\Factories\WorkerFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Worker newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Worker newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Worker onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Worker query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Worker whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Worker whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Worker whereFirstName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Worker whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Worker whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Worker whereLastName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Worker whereNote($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Worker wherePromotionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Worker whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Worker whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Worker withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Worker withoutTrashed()
+ * @mixin \Eloquent
+ */
+	class IdeHelperWorker {}
+}
+

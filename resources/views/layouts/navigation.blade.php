@@ -67,7 +67,10 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('promotion.index')" :active="request()->routeIs('promotions.*')">
                 {{ __('Promotions') }}
-          </x-responsive-nav-link>  
+            </x-responsive-nav-link>
+           <x-responsive-nav-link :href="route('worker.index')" :active="request()->routeIs('worker.*')">
+                {{ __('Workers') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

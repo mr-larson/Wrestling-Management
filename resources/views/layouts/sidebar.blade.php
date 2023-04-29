@@ -11,6 +11,11 @@
                   {{ __('Promotions') }}
             </x-nav-link>  
          </li>
+         <li>
+            <x-nav-link :href="route('worker.index')" :active="request()->routeIs('worker.*')" :fas="'users'">
+                  {{ __('Workers') }}
+            </x-nav-link>
+         </li>
       </ul>
    </div>  
- </aside>
+</aside>
