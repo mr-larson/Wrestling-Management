@@ -36,6 +36,7 @@ Route::prefix('management')->group(function () {
     Route::resource('promotion', PromotionController::class);
     //Worker
     Route::get('worker/search', [WorkerController::class, 'search'])->name('worker.search');
+    Route::patch('/workers/{worker}/update-score', [WorkerController::class, 'updateScore'])->name('worker.updateScore');
     Route::resource('worker', WorkerController::class);
 });
 

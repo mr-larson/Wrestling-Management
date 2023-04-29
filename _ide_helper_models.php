@@ -23,6 +23,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\Models\User $user
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Worker> $workers
+ * @property-read int|null $workers_count
  * @method static \Database\Factories\PromotionFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Promotion newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Promotion newQuery()
@@ -61,6 +63,8 @@ namespace App\Models{
  * @property-read int|null $promotions_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Sanctum\PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Worker> $workers
+ * @property-read int|null $workers_count
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
@@ -87,11 +91,16 @@ namespace App\Models{
  * @property string $first_name
  * @property string|null $note
  * @property string|null $image
+ * @property int $wins
+ * @property int $draws
+ * @property int $losses
  * @property int $user_id
  * @property int $promotion_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\Promotion $promotion
+ * @property-read \App\Models\User $user
  * @method static \Database\Factories\WorkerFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Worker newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Worker newQuery()
@@ -99,14 +108,17 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Worker query()
  * @method static \Illuminate\Database\Eloquent\Builder|Worker whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Worker whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Worker whereDraws($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Worker whereFirstName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Worker whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Worker whereImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Worker whereLastName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Worker whereLosses($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Worker whereNote($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Worker wherePromotionId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Worker whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Worker whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Worker whereWins($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Worker withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Worker withoutTrashed()
  * @mixin \Eloquent

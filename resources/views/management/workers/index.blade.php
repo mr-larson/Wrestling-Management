@@ -24,6 +24,8 @@
                         </x-sortable-header>
                         <th scope="col" class="px-6 py-3">Image</th>
                         <th scope="col" class="px-6 py-3">Promotion</th>
+                        <th scope="col" class="px-6 py-3">Score</th>
+                        <th scope="col" class="px-6 py-3">Actions</th>
                         <x-sortable-header :value="'created_at'" :route="'worker.index'" :orderBy="$orderBy">Created at
                         </x-sortable-header>
                         <th scope="col">
@@ -33,10 +35,8 @@
                 </thead>
                 <tbody>
                     @forelse ($workers as $worker)
-                        <tr
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{ $worker?->last_name }}
                             </th>
                             <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -49,8 +49,20 @@
                                 {{ $worker?->promotion?->name ?? '-' }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $worker?->created_at->format('d/m/Y') ?? '-' }}
+                               W: {{ $worker->wins }} - D: {{ $worker->draws }} - L: {{ $worker->losses }}
                             </td>
+                            <td class="px-6 py-4">
+                                <form action="{{ route('worker.updateScore', ['worker' => $worker]) }}" method="POST">
+                                    @csrf
+                                    @method('PATCH')
+                                    <x-btn type="submit" name="result" value="win" class="bg-green-700 hover:bg-green-800 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">+</x-btn>
+                                    <x-btn type="submit" name="result" value="draw" class="bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-300 dark:focus:ring-yellow-900">=</x-btn>
+                                    <x-btn type="submit" name="result" value="loss" class="bg-red-700 hover:bg-red-800 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">-</x-btn>
+                                </form>
+                            </td>      
+                            <td class="px-6 py-4">
+                                {{ $worker?->created_at->format('d/m/Y') ?? '-' }}
+                            </td>                     
                             <td class="px-6 py-4 text-right">
                                 <x-btn-group>
                                     <x-btn-show :action="route('worker.show', ['worker' => $worker])"></x-btn-show>
@@ -62,7 +74,7 @@
                     @empty
                         <td colspan="4" class="px-6 py-4 text-center"> No yet</p>
                     @endforelse
-                </tbody>
+                </tbody>                
             </table>
         </div>
     </div>

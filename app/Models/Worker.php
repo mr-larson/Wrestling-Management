@@ -68,6 +68,26 @@ class Worker extends Model
         return $value ? str_replace('/storage/', '', Storage::url($value)) : null;
     }
 
+    public function updateScore($result)
+    {
+        switch ($result) {
+            case 'win':
+                $this->wins++;
+                break;
+            case 'draw':
+                $this->draws++;
+                break;
+            case 'loss':
+                $this->losses++;
+                break;
+            default:
+                throw new \Exception('Invalid result');
+        }
+
+        $this->save();
+    }
+
+
     public function user()
     {
         return $this->belongsTo(User::class);

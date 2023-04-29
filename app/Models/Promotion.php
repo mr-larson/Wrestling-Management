@@ -65,4 +65,16 @@ class Promotion extends Model
     {
         return $this->hasMany(Worker::class);
     }
+
+    public function getRankedWorkers()
+    {
+        $workers = $this->workers()->get();
+
+        $workers = $workers->sortByDesc(function ($worker) {
+            return $worker->wins * 3 + $worker->draws;
+        });
+
+        return $workers;
+    }
+
 }

@@ -23,6 +23,26 @@
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Created by : {{ $promotion->user->name }}</p>
                 </div>
             </div>
+
+            <h1>{{ $promotion->name }} - Classement des travailleurs</h1>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Travailleur</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($rankedWorkers as $worker)
+                        <tr>
+                            <td>{{ $worker->last_name }} {{ $worker->first_name }}</td>
+                            <td>{{ $worker->wins * 3 + $worker->draws }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
         </section>
     </x-card-form>
 </x-app-layout>

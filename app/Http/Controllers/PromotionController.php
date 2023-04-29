@@ -79,8 +79,10 @@ class PromotionController extends Controller
      */
     public function show(Promotion $promotion): View
     {
-        return view('management.promotions.show', compact('promotion'));
+        $rankedWorkers = $promotion->getRankedWorkers();
+        return view('management.promotions.show', compact('promotion', 'rankedWorkers'));
     }
+
 
     /**
      * Show the form for editing the specified resource.

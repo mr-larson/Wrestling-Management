@@ -159,4 +159,17 @@ class WorkerController extends Controller
 
         return view('management.workers.index', compact('workers', 'orderBy', 'search'));
     }
+
+    public function updateScore(Request $request, Worker $worker)
+    {
+        $result = $request->get('result');
+
+        try {
+            $worker->updateScore($result);
+            return redirect()->back()->with('success', 'Score updated successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'An error occurred while updating the score: ' . $e->getMessage());
+        }
+    }
+
 }
