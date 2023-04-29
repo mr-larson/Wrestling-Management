@@ -55,9 +55,9 @@
                                 <form action="{{ route('worker.updateScore', ['worker' => $worker]) }}" method="POST">
                                     @csrf
                                     @method('PATCH')
-                                    <x-btn type="submit" name="result" value="win" class="bg-green-700 hover:bg-green-800 focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">+</x-btn>
-                                    <x-btn type="submit" name="result" value="draw" class="bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-300 dark:focus:ring-yellow-900">=</x-btn>
-                                    <x-btn type="submit" name="result" value="loss" class="bg-red-700 hover:bg-red-800 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">-</x-btn>
+                                    <x-btn type="submit" name="result" value="win" class="bg-emerald-700 hover:bg-emerald-800 focus:ring-emerald-300 dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800">+</x-btn>
+                                    <x-btn type="submit" name="result" value="draw" class="bg-amber-400 hover:bg-amber-500 focus:ring-amber-300 dark:focus:ring-amber-900">=</x-btn>
+                                    <x-btn type="submit" name="result" value="loss" class="bg-red-700 hover:bg-pink-800 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">-</x-btn>
                                 </form>
                             </td>      
                             <td class="px-6 py-4">

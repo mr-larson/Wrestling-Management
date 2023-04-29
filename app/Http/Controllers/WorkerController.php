@@ -82,7 +82,7 @@ class WorkerController extends Controller
         $worker->fill($request->all());
         $worker->save();
 
-        return redirect()->route('worker.index')->with('success', 'Le travailleur a bien été créé.');
+        return redirect()->route('worker.index')->with('success', 'the worker has been created successfully');
     }
 
     /**
@@ -98,7 +98,8 @@ class WorkerController extends Controller
      */
     public function edit(Worker $worker): View
     {
-        return view('management.workers.edit', compact('worker'));
+        $promotions = Promotion::all();
+        return view('management.workers.edit', compact('worker', 'promotions'));
     }
 
     /**
@@ -106,6 +107,7 @@ class WorkerController extends Controller
      */
     public function update(UpdateWorkerRequest $request, Worker $worker): RedirectResponse
     {
+        $worker->load('user', 'promotion');
         // Vérifier si un fichier a été uploadé
         if ($request->hasFile('image')) {
             // Récupérer le fichier uploadé

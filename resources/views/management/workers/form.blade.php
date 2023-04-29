@@ -16,7 +16,7 @@
     </div>
     <div class="mb-6">
         <x-label>Promotion</x-label>
-        <x-select name="promotion_id" :options="$promotions" ::selected="old('promotion_id', $worker?->promotion_id)" />
+        <x-select name="promotion_id" :options="$promotions" :selected="old('promotion_id', $worker?->promotion_id)" />
     </div>
     <div class="mb-6">
         <x-label>Note</x-label>
