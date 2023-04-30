@@ -18,8 +18,8 @@ class WorkerController extends Controller
     public function index(Request $request): View
     {
         $query = Worker::query()->with('user', 'promotion');
-
-        $orderBy = $request->get('orderBy', 'last_name');
+        
+        $orderBy = $request->get('orderBy', 'score');
 
         switch ($orderBy) {
             case 'created_at':
@@ -34,11 +34,29 @@ class WorkerController extends Controller
             case 'first_name-desc':
                 $query = $query->orderBy('first_name', 'desc');
                 break;
+            case 'last_name':
+                $query = $query->orderBy('last_name');
+                break;
             case 'last_name-desc':
                 $query = $query->orderBy('last_name', 'desc');
                 break;
+            case 'promotion':
+                $query = $query->orderBy('promotion_id');
+                break;
+            case 'promotion-desc':
+                $query = $query->orderBy('promotion_id', 'desc');
+                break;
+            case 'score-desc':
+                $query = $query->orderBy('wins', 'desc')
+                               ->orderBy('draws', 'desc')
+                               ->orderBy('losses', 'desc');
+                break;
             default:
-                $query = $query->orderBy('last_name');
+                $query = $query->orderByDesc('wins')
+                               ->orderBy('draws')
+                               ->orderBy('losses');
+                break;
+            
         }
 
         $workers = $query->paginate(10)->appends($request->query());
@@ -174,4 +192,13 @@ class WorkerController extends Controller
         }
     }
 
+    public function resetScore(Worker $worker)
+    {
+        try {
+            $worker->resetScore();
+            return redirect()->back()->with('success', 'Score reset successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'An error occurred while resetting the score: ' . $e->getMessage());
+        }
+    }
 }

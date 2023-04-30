@@ -87,6 +87,14 @@ class Worker extends Model
         $this->save();
     }
 
+    public function resetScore()
+    {
+        $this->wins = 0;
+        $this->draws = 0;
+        $this->losses = 0;
+
+        $this->save();
+    }
 
     public function user()
     {
