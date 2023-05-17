@@ -1,7 +1,7 @@
 @props(['action', 'name', 'home'])
 <form action="{{ $action }}" method="GET">
     @csrf
-    <div class="w-full sm:w-auto">
+    <div class="w-full sm:w-auto pt-3">
         <label for="table-search" class="sr-only">Search</label>
         <div class="relative">
             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pb-4 pointer-events-none">

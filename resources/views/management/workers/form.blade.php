@@ -1,11 +1,11 @@
 <div>
     <div class="mb-6 mt-6">
         <x-input-label for="last_name" :value="__('Last Name*')" />
-        <x-input-text id="lastName" name="last_name" type="text" class="mt-1 block w-full" :value="old('last_name', $worker?->last_name)" required autofocus autocomplete="last_name" />
+        <x-input-text id="lastName" name="last_name" type="text" class="mt-1 block w-full" :value="old('last_name', $worker?->last_name)" />
     </div>
     <div class="mb-6">
         <x-input-label for="first_name" :value="__('First Name*')" />
-        <x-input-text id="firstName" name="first_name" type="text" class="mt-1 block w-full" :value="old('first_name', $worker?->first_name)" required autofocus autocomplete="first_name" />
+        <x-input-text id="firstName" name="first_name" type="text" class="mt-1 block w-full" :value="old('first_name', $worker?->first_name)" />
     </div>
     <div class="mb-6">
         <x-label>Image</x-label>

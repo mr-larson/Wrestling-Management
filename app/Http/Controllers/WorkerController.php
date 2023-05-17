@@ -49,12 +49,12 @@ class WorkerController extends Controller
             case 'score-desc':
                 $query = $query->orderBy('wins', 'desc')
                                ->orderBy('draws', 'desc')
-                               ->orderBy('losses', 'desc');
+                               ->orderBy('losses',);
                 break;
             default:
                 $query = $query->orderByDesc('wins')
                                ->orderBy('draws')
-                               ->orderBy('losses');
+                               ->orderBy('losses', 'desc');
                 break;
             
         }

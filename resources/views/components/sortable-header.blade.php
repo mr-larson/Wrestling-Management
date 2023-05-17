@@ -1,7 +1,7 @@
 @props(['route', 'orderBy', 'value'])
 
 <th scope="col" class="px-3 py-3">
-    <a  {{ $attributes->merge(['class' => "text-decoration-none text-light"]) }} href="{{ route($route, ['orderBy' => ($orderBy === $value) ? $value.'-desc' : $value]) }}">
+    <a  {{ $attributes->merge(['class' => "text-decoration-none text-light text-start"]) }} href="{{ route($route, ['orderBy' => ($orderBy === $value) ? $value.'-desc' : $value]) }}">
         {{ $slot }}
         @isset($orderBy)
             @if(in_array($orderBy, [ $value , $value.'-desc']))

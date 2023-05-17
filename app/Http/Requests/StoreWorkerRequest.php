@@ -22,9 +22,9 @@ class StoreWorkerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'last_name' => 'required|string|max:255',
-            'first_name' => 'required|string|max:255',
-            'note' => 'nullable|string|max:255',
+            'last_name' => 'nullable|required_if:first_name,null|string|max:255',
+            'first_name' => 'nullable|required_if:last_name,null|string|max:255',
+            'note' => 'nullable|text',
             'image' => 'nullable|image',
             'user_id' => 'required|exists:users,id',
             'promotion_id' => 'nullable|exists:promotions,id',
