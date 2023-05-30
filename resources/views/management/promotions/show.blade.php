@@ -22,11 +22,12 @@
                 <div class="p-5 text-start">
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Created by : {{ $promotion->user->name }}</p>
                 </div>
-                <div>
+                <div class="mb-3 font-normal text-gray-700 dark:text-gray-200">
                     <h1>{{ $promotion->name }} - Ranking</h1>
                     <table>
                         <thead>
                             <tr>
+                                <th>Rank</th>
                                 <th>Worker</th>
                                 <th>Score</th>
                             </tr>
@@ -34,6 +35,7 @@
                         <tbody>
                             @foreach($rankedWorkers as $worker)
                                 <tr>
+                                    <td> {{ $loop->iteration }} </td>
                                     <td> {{ $worker->first_name }} {{ $worker->last_name }} </td>
                                     <td>{{ $worker->wins * 3 + $worker->draws - $worker->losses }}</td>
                                 </tr>

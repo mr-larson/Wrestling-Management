@@ -5,7 +5,7 @@
     <div class="p-4 sm:ml-56 mt-14">
         <div class="flex flex-wrap items-center justify-between p-4">
             <x-btn-create :href="route('worker.create')" :fas="'plus'"> Create </x-btn-create>
-            <x-success-message></x-success-message>
+            <x-success-message></x-success-message>       
             <x-search :action="route('worker.search')" name="search" :home="route('worker.index')"></x-search>
         </div>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -66,5 +66,6 @@
                 </tbody>                
             </x-table>
         </div>
+        <x-paginate>{{ $workers->links() }}</x-paginate>
     </div>
 </x-app-layout>

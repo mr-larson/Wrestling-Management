@@ -20,6 +20,7 @@
                         <x-sortable-header :value="'name'" :route="'promotion.index'" :orderBy="$orderBy">Name</x-sortable-header>
                         <th scope="col" class="px-6 py-3">Image</th>
                         <x-sortable-header :value="'created_at'" :route="'promotion.index'" :orderBy="$orderBy">Created at</x-sortable-header>
+                        <th>Total Workers</th>
                         <th scope="col">
                             <span class="sr-only"></span>
                         </th>
@@ -36,6 +37,9 @@
                         </td>
                         <td class="px-6 py-4">
                             {{ $promotion?->created_at->format('d/m/Y') ?? '-' }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $promotion->workers->count() }}
                         </td>
                         <td class="px-6 py-4 text-right">   
                             <x-btn-group>
