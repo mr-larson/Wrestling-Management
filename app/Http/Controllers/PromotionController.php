@@ -79,6 +79,7 @@ class PromotionController extends Controller
      */
     public function show(Promotion $promotion): View
     {
+        $promotion->load('user', 'workers');
         $rankedWorkers = $promotion->getRankedWorkers();
         return view('management.promotions.show', compact('promotion', 'rankedWorkers'));
     }

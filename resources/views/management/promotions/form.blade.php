@@ -5,9 +5,9 @@
     </div>
     <div class="mb-6">
         <x-label>Image</x-label>
-        <x-input id="image" class="block mt-1 mb-4 w-full" type="file" name="image" :value="old('image')" />
+        <x-input id="image" type="file" name="image" :value="old('image')" />
         @if ($promotion?->image)
-            <img src="{{ Storage::url($promotion?->image) }}" alt="{{ $promotion?->name }}" class="w-1/2">
+            <img src="{{ Storage::url($promotion?->image) }}" alt="{{ $promotion?->name }}" class="h-24">
         @endif
     </div>
     <div class="mb-6">

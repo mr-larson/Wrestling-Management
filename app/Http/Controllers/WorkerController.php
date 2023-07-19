@@ -70,7 +70,7 @@ class WorkerController extends Controller
             
         }
         // Récupérer les résultats paginés (appends permet de conserver les paramètres de la requête)
-        $workers = $query->paginate(10)->appends($request->query());
+        $workers = $query->paginate(30)->appends($request->query());
 
         // Récupérer toutes les promotions
         $promotions = Promotion::all();
