@@ -2,7 +2,7 @@
     <x-slot name="header">
         <x-h2>{{ __('Workers') }}</x-h2>
     </x-slot>
-    <div class="p-4 sm:ml-56 mt-14">
+    <div class="p-4 md:ml-56 mt-14">
         <div class="flex flex-wrap items-center justify-between p-4">
             <x-btn-create :href="route('worker.create')" :fas="'plus'"> Create </x-btn-create>
             <x-success-message></x-success-message>       
