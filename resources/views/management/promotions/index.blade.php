@@ -3,7 +3,7 @@
         <x-h2>{{ __('Promotions') }}</x-h2>
     </x-slot>
     
-    <div class="p-4 sm:ml-56 mt-14">
+    <div class="p-4 md:ml-56 mt-14">
         <div class="flex flex-wrap items-center justify-between p-4">
             <div class="w-full sm:w-auto mb-4 sm:mb-0 sm:mr-4">
                 <x-btn-create :href="route('promotion.create')" :fas="'plus'"> Create </x-btn-create>
