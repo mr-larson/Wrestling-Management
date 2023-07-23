@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\TournamentController;
 use App\Http\Controllers\WorkerController;  
 use Illuminate\Support\Facades\Route;
 
@@ -38,6 +39,8 @@ Route::prefix('management')->group(function () {
     Route::patch('/workers/{worker}/update-score', [WorkerController::class, 'updateScore'])->name('worker.updateScore');
     Route::patch('/workers/{worker}/reset_score', [WorkerController::class, 'resetScore'])->name('worker.resetScore');
     Route::resource('worker', WorkerController::class);
+    //Tournament
+    Route::resource('tournament', TournamentController::class);
 });
 
 

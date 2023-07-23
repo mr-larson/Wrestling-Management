@@ -77,4 +77,10 @@ class Promotion extends Model
         return $workers;
     }
 
+    public function tournaments()
+    {
+        return $this->hasMany(Tournament::class);
+    }
+
+
 }

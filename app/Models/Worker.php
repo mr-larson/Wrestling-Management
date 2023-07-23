@@ -105,4 +105,9 @@ class Worker extends Model
     {
         return $this->belongsTo(Promotion::class);
     }
+
+    public function tournaments()
+    {
+        return $this->belongsToMany(Tournament::class);
+    }
 }

@@ -16,6 +16,11 @@
                   {{ __('Workers') }}
             </x-nav-link>
          </li>
+         <li>
+            <x-nav-link :href="route('tournament.index')" :active="request()->routeIs('tournament.*')" :fas="'trophy'">
+                  {{ __('Tournaments') }}
+            </x-nav-link>
+         </li>
       </ul>
    </div>  
 </aside>
