@@ -11,16 +11,15 @@
                 <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
                     {{ __('To show a worker, list in complete information.') }}
                 </p>
-            </header>
-           
+            </header>           
             <div class="max-w-sm mt-6 bg-slate-100 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex justify-center inline relative">
                     @if ($worker && $worker->promotion && $worker->promotion->image)
-                        <img src="/storage/{{ $worker->promotion->image }}" class="h-32 rounded">
+                        <img src="/storage/{{ $worker->promotion->image }}" class="h-32 w-36 rounded">
                     @else
                         {{ $worker->promotion->name ?? '-' }}
                     @endif
-                    <img src="/storage/{{ $worker->image }}" class="h-32 absolute">
+                    <img src="/storage/{{ $worker->image }}" class="h-32 w-36 absolute">
                 </div>                
                 <div class="p-5">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Last Name :{{ $worker->last_name }}</h5>
@@ -29,10 +28,8 @@
                 </div>
                 <div class="p-5 text-start">
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Created by : {{ $worker->user->name }}</p>
+                    <a href="{{ route('worker.edit', $worker) }}" class="px-4 py-2 mb-4 text-white bg-gradient-to-r from-blue-400 to-blue-500 rounded hover:bg-blue-700">Edit</a>
                 </div>
-            </div>
-            <div class="bg-red-200 h-100 w-36">
-
             </div>
         </section>
     </x-card-form>

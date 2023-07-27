@@ -17,7 +17,8 @@
                 <div class="p-5">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $promotion->name }}</h5>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Description : {{ $promotion?->description ?? '-' }}</p>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Created by : {{ $promotion->user->name }}</p>    
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Created by : {{ $promotion->user->name }}</p>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Created at : {{ $promotion?->created_at->format('d/m/Y') ?? '-' }}</p>    
                 </div>
             </div>
 
