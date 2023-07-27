@@ -20,6 +20,9 @@
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Created by : {{ $promotion->user->name }}</p>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Created at : {{ $promotion?->created_at->format('d/m/Y') ?? '-' }}</p>    
                 </div>
+                <div class="p-5 text-start">
+                    <a href="{{ route('promotion.edit', $promotion) }}" class="px-4 py-2 mb-4 text-white bg-gradient-to-r from-blue-400 to-blue-500 rounded hover:bg-blue-700">Edit</a>
+                </div>
             </div>
 
             <div class="row-span-3 col-span-6 bg-slate-100 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -75,6 +78,7 @@
                                 @endforelse
                             </tbody>                
                         </x-table>
+                    </div>
                 </div>
             </div>
         </section>

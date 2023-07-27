@@ -29,8 +29,16 @@
                 <tbody>
                     @forelse ($workers as $worker)
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <x-td>{{ $worker?->last_name }}</x-td>
-                            <x-td>{{ $worker?->first_name }}</x-td>
+                            <x-td>
+                                <a href="{{ route('worker.show', ['worker' => $worker]) }}">
+                                    {{ $worker?->last_name }}
+                                </a>
+                            </x-td>
+                            <x-td>
+                                <a href="{{ route('worker.show', ['worker' => $worker]) }}">
+                                    {{ $worker?->first_name }}
+                                </a>
+                            </x-td>
                             <x-td>
                                 @if ($worker->image == null)
                                     <span> </span>
@@ -40,7 +48,9 @@
                             </x-td>
                             <x-td>
                                 @if ($worker?->promotion?->image)
-                                    <img src="/storage/{{ $worker?->promotion?->image }}" class="h-12 rounded">
+                                    <a href="{{ route('promotion.show', ['promotion' => $worker?->promotion]) }}">
+                                        <img src="/storage/{{ $worker?->promotion?->image }}" class="h-12 rounded">
+                                    </a>
                                 @else
                                     <span>{{ $worker?->promotion?->name ?? 'Free Agent' }}</span>
                                 @endif
