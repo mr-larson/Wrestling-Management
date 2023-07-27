@@ -31,12 +31,20 @@
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <x-td>{{ $worker?->last_name }}</x-td>
                             <x-td>{{ $worker?->first_name }}</x-td>
-                            <x-td><img src="/storage/{{ $worker?->image }}" class="h-12 rounded-full"></x-td>
-                            @if ($worker?->promotion?->image)
-                                <x-td><img src="/storage/{{ $worker?->promotion?->image }}" class="h-12 rounded"></x-td>
-                            @else
-                                <x-td>{{ $worker?->promotion?->name ?? '-' }}</x-td>
-                            @endif
+                            <x-td>
+                                @if ($worker->image == null)
+                                    <span> </span>
+                                @else
+                                    <img class="h-10 w-10 rounded-full" src="/storage/{{ $worker->image }}" alt="">
+                                @endif
+                            </x-td>
+                            <x-td>
+                                @if ($worker?->promotion?->image)
+                                    <img src="/storage/{{ $worker?->promotion?->image }}" class="h-12 rounded">
+                                @else
+                                    <span>{{ $worker?->promotion?->name ?? 'Free Agent' }}</span>
+                                @endif
+                            </x-td>
                             <x-td>{{ $worker->wins }} - {{ $worker->draws }} - {{ $worker->losses }}</x-td>
                             <x-td>
                                 <form action="{{ route('worker.updateScore', ['worker' => $worker]) }}" method="POST">

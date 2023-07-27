@@ -30,8 +30,7 @@
                                     <x-th>Rank</x-th>
                                     <x-th>Worker</x-th>
                                     <x-th>Score</x-th>
-                                    <x-th>Actions</x-th>
-                                    <x-th><span class="sr-only"></span></x-th>
+                                    <x-th colspan="2">Actions</x-th>
                                 </tr>
                             </x-thead>
                             <tbody>
@@ -40,10 +39,15 @@
                                         <x-td>{{ $loop->iteration }}</x-td>
                                         <x-td>
                                             <div class="text-sm font-medium text-gray-900 dark:text-gray-200">
-                                                {{ $worker?->first_name }} {{ $worker?->last_name }}
+                                                <a href="{{ route('worker.show', $worker) }}" class="flex items-center space-x-3">
+                                                    @if ($worker->image == null)
+                                                        <span>{{ $worker?->first_name }} {{ $worker?->last_name }}</span>
+                                                    @else
+                                                        <img class="w-8 h-8 rounded-full" src="/storage/{{ $worker->image }}" alt="">
+                                                        <span>{{ $worker?->first_name }} {{ $worker?->last_name }}</span>
+                                                    @endif
+                                                </a>
                                             </div>
-                                            {{-- <a href="{{ route('#', $worker) }}" class="flex items-center space-x-3">
-                                            </a> --}}
                                         </x-td>
                                         <x-td>{{ $worker->wins }} - {{ $worker->draws }} - {{ $worker->losses }}</x-td>
                                         <x-td>
@@ -54,21 +58,16 @@
                                                     <x-btn type="submit" name="result" value="win" class="text-emerald-700 bg-emerald-100 hover:bg-emerald-300 focus:ring-emerald-300 border border-emerald-700 mx-1">+</x-btn>
                                                     <x-btn type="submit" name="result" value="draw" class="text-yellow-700 bg-yellow-100 hover:bg-yellow-300 focus:ring-yellow-300 border border-yellow-700 mx-1">=</x-btn>
                                                     <x-btn type="submit" name="result" value="loss" class="text-red-700 bg-red-100 hover:bg-red-300 focus:ring-red-300 border border-red-700 mx-1">-</x-btn>
-                                                    <form action="{{ route('worker.resetScore', ['worker' => $worker]) }}" method="POST">
-                                                        @csrf
-                                                        @method('PATCH')
-                                                        <x-btn type="submit" name="result" value="reset" class="hover:bg-slate-200 dark:hover:bg-slate-700 focus:ring-slate-300 border border-slate-300">Reset</x-btn>
-                                                    </form>
                                                 </div>
+                                            </form>                                          
+                                        </x-td>    
+                                        <x-td>
+                                            <form action="{{ route('worker.resetScore', ['worker' => $worker]) }}" method="POST">
+                                                @csrf
+                                                @method('PATCH')
+                                                <x-btn type="submit" name="result" value="reset" class="hover:bg-slate-200 dark:hover:bg-slate-700 focus:ring-slate-300 border border-slate-300">Reset</x-btn>
                                             </form>
-                                        </x-td>                    
-                                        <x-td class="text-right">
-                                            <x-btn-group>
-                                                <x-btn-show :action="route('worker.show', ['worker' => $worker])"></x-btn-show>
-                                                <x-btn-edit :action="route('worker.edit', ['worker' => $worker])"></x-btn-edit>
-                                                <x-btn-destroy :action="route('worker.destroy', ['worker' => $worker])"></x-btn-destroy>
-                                            </x-btn-group>
-                                        </x-td>
+                                        </x-td>                  
                                     </tr>
                                 @empty
                                     <td colspan="7" class="px-3 py-4 text-center"> No yet</p>
