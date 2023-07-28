@@ -34,7 +34,7 @@
                                 {{ $promotion?->name }}
                             </a>
                         </th>
-                        <x-td><img src="/storage/{{ $promotion?->image }}" class="h-16 rounded"></x-td>
+                        <x-td><img src="/storage/{{ $promotion?->image }}" class="h-12 w-16 rounded"></x-td>
                         <td class="px-6 py-4">
                             {{ $promotion?->created_at->format('d/m/Y') ?? '-' }}
                         </td>

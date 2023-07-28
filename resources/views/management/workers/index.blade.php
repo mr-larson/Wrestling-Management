@@ -49,7 +49,7 @@
                             <x-td>
                                 @if ($worker?->promotion?->image)
                                     <a href="{{ route('promotion.show', ['promotion' => $worker?->promotion]) }}">
-                                        <img src="/storage/{{ $worker?->promotion?->image }}" class="h-12 rounded">
+                                        <img src="/storage/{{ $worker?->promotion?->image }}" class="h-12 w-16 rounded">
                                     </a>
                                 @else
                                     <span>{{ $worker?->promotion?->name ?? 'Free Agent' }}</span>
