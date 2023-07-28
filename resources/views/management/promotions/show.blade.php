@@ -11,11 +11,16 @@
                 {{ __('To show a promotion, list in complete information.') }}
             </p>
         </header>
-        <section class="grid grid-rows-2 grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+        <section class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
             <div class="row-span-1 col-span-full md:col-span-1 lg:col-span-1 bg-slate-100 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <img src="/storage/{{ $promotion?->image }}" class="rounded-t-lg">
                 <div class="p-5">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $promotion->name }}</h5>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Owner : {{ $promotion?->owner ?? '-' }}</p>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Booker : {{ $promotion?->booker ?? '-' }}</p>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Based in : {{ $promotion?->based_in ?? '-' }}</p>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Country : {{ $promotion?->country ?? '-' }}</p>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Style : {{ $promotion?->style?->value ?? '-' }}</p>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Description : {{ $promotion?->description ?? '-' }}</p>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Created by : {{ $promotion->user->name }}</p>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Created at : {{ $promotion?->created_at->format('d/m/Y') ?? '-' }}</p>    
@@ -25,7 +30,7 @@
                 </div>
             </div>
 
-            <div class="row-span-3 col-span-full md:col-span-2 lg:col-span-2    ">
+            <div class="row-span-2 col-span-full md:col-span-2 lg:col-span-2    ">
                 <div class="font-normal text-gray-700 dark:text-gray-200">
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <x-table>

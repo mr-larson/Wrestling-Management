@@ -4,7 +4,7 @@ namespace App\Enums;
 
 use App\Traits\WithDisplayName;
 
-enum StyleType: string
+enum PromotionStyle: string
 {
     use WithDisplayName;
 

@@ -23,6 +23,11 @@ class UpdatePromotionRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
+            'owner' => 'nullable|string|max:255',
+            'booker' => 'nullable|string|max:255',
+            'based_in' => 'nullable|string|max:255',
+            'country' => 'nullable|string|max:255',
+            'style' => 'nullable|string|max:255',
             'description' => 'nullable|string|max:255',
             'image' => 'nullable|image',
             'user_id' => 'required|exists:users,id',

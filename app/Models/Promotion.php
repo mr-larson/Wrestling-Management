@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 use Spatie\MediaLibrary\HasMedia;
+use App\Enums\PromotionStyle;
 
 /**
  * @mixin IdeHelperPromotion
@@ -22,6 +23,11 @@ class Promotion extends Model
         'name',
         'description',
         'image',
+        'owner',
+        'booker',
+        'based_in',
+        'country',
+        'style',
         'user_id',
     ];
 
@@ -35,6 +41,7 @@ class Promotion extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime',
+        'style' => PromotionStyle::class,
     ];
 
     public function setImageAttribute($value)
@@ -81,6 +88,4 @@ class Promotion extends Model
     {
         return $this->hasMany(Tournament::class);
     }
-
-
 }
