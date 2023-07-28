@@ -2,7 +2,7 @@
     <x-slot name="header">
         <x-h1>{{ __('Promotions') }}</x-h1>
     </x-slot>
-    <x-card-form class="">
+    <x-card-form>
         <header>
             <x-h2>
                 {{ __('Show Promotion') }}
@@ -11,8 +11,8 @@
                 {{ __('To show a promotion, list in complete information.') }}
             </p>
         </header>
-        <section class="grid grid-rows-3 grid-flow-col gap-12 mt-6">
-            <div class="row-span-2 max-w-sm bg-slate-100 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <section class="grid grid-rows-2 grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+            <div class="row-span-1 col-span-full md:col-span-1 lg:col-span-1 bg-slate-100 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <img src="/storage/{{ $promotion?->image }}" class="rounded-t-lg">
                 <div class="p-5">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $promotion->name }}</h5>
@@ -25,7 +25,7 @@
                 </div>
             </div>
 
-            <div class="row-span-3 col-span-6 bg-slate-100 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <div class="row-span-3 col-span-full md:col-span-2 lg:col-span-2    ">
                 <div class="font-normal text-gray-700 dark:text-gray-200">
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <x-table>

@@ -12,7 +12,7 @@
                     {{ __('To show a worker, list in complete information.') }}
                 </p>
             </header>           
-            <div class="max-w-sm mt-6 bg-slate-100 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <div class="max-w-md mt-6 bg-slate-100 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex justify-center inline relative">
                     @if ($worker && $worker->promotion && $worker->promotion->image)
                         <img src="/storage/{{ $worker->promotion->image }}" class="h-32 w-36 rounded">
