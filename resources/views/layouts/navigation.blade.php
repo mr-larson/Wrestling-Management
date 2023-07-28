@@ -73,9 +73,9 @@
            <x-responsive-nav-link :href="route('worker.index')" :active="request()->routeIs('worker.*')">
                 {{ __('Workers') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('tournament.index')" :active="request()->routeIs('tournament.*')">
+            {{-- <x-responsive-nav-link :href="route('tournament.index')" :active="request()->routeIs('tournament.*')">
                 {{ __('Tournaments') }}
-            </x-responsive-nav-link>
+            </x-responsive-nav-link> --}}
         </div>
 
         <!-- Responsive Settings Options -->
