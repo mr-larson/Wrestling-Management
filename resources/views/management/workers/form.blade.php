@@ -8,6 +8,17 @@
         <x-input-text id="firstName" name="first_name" type="text" class="mt-1 block w-full" :value="old('first_name', $worker?->first_name)" />
     </div>
     <div class="mb-6">
+        <x-label for="gender">Gender</x-label>
+        <select name="gender" id="gender" class="block mt-1 w-full rounded-md shadow-sm">
+            <option value="">-</option>
+            @foreach (App\Enums\WorkersGender::cases() as $gender)
+                <option value="{{ $gender->value }}" {{ old('gender', $worker?->gender?->value) === $gender->value ? 'selected' : '' }}>
+                    {{ $gender->value }}
+                </option>
+            @endforeach
+        </select>
+    </div>  
+    <div class="mb-6">
         <x-label>Image</x-label>
         <x-input id="image" type="file" name="image" :value="old('image')" />
         @if ($worker?->image)

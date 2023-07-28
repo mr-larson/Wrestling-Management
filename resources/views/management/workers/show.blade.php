@@ -24,6 +24,7 @@
                 <div class="p-5">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Last Name :{{ $worker->last_name }}</h5>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">First Name : {{ $worker?->first_name ?? '-' }}</p>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Gender : {{ $worker?->gender?->value ?? '-' }}</p>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Description : {{ $worker?->note ?? '-' }}</p>
                 </div>
                 <div class="p-5 text-start">

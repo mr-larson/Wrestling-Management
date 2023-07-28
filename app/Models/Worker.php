@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Enums\WorkersGender;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
+
 
 /**
  * @mixin IdeHelperWorker
@@ -20,6 +22,7 @@ class Worker extends Model
     protected $fillable = [
         'last_name',
         'first_name',
+        'gender',
         'note',
         'image',
         'user_id',
@@ -36,6 +39,7 @@ class Worker extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime',
+        'gender' => WorkersGender::class,
     ];
 
     public static function boot()

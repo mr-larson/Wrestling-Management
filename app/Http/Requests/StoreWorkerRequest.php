@@ -24,6 +24,7 @@ class StoreWorkerRequest extends FormRequest
         return [
             'last_name' => 'nullable|required_if:first_name,null|string|max:255',
             'first_name' => 'nullable|required_if:last_name,null|string|max:255',
+            'gender' => 'nullable',
             'note' => 'nullable|text',
             'image' => 'nullable|image',
             'user_id' => 'required|exists:users,id',
