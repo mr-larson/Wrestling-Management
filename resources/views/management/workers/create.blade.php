@@ -11,6 +11,16 @@
                 <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
                     {{ __('To create a worker, you just need a last name & first name.') }}
                 </p>
+                {{-- add message if error validation --}}
+                @if ($errors->any())
+                    <div class="text-red-600">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li class="text-red-600">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </header>
             <form method="POST" action="{{route("worker.store") }}" enctype="multipart/form-data">
                 @csrf

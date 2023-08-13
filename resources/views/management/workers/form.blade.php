@@ -1,3 +1,4 @@
+@php use App\Enums\WorkersGender; @endphp
 <div>
     <div class="mb-6 mt-6">
         <x-input-label for="last_name" :value="__('Last Name*')" />
@@ -10,8 +11,8 @@
     <div class="mb-6">
         <x-label for="gender">Gender</x-label>
         <select name="gender" id="gender" class="block mt-1 w-full rounded-md shadow-sm">
-            <option value="">-</option>
-            @foreach (App\Enums\WorkersGender::cases() as $gender)
+            <option value="">Select a gender</option>
+            @foreach (WorkersGender::cases() as $gender)
                 <option value="{{ $gender->value }}" {{ old('gender', $worker?->gender?->value) === $gender->value ? 'selected' : '' }}>
                     {{ $gender->value }}
                 </option>

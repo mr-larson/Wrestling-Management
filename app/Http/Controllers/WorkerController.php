@@ -139,7 +139,6 @@ class WorkerController extends Controller
      */
     public function edit(Worker $worker): View
     {
-        //
         $promotions = Promotion::all();
         return view('management.workers.edit', compact('worker', 'promotions'));
     }
