@@ -5,6 +5,8 @@
 
 > Une plateforme de gestion de promotions et de travailleurs, permettant de gérer les statistiques de match et le classement global et par promotions. 
 
+## 🏠 [Documentation](https://gautd8.notion.site/WrestlingManagement-396a53f32a354511bed972ceacf4df0d?pvs=4)
+
 ## Fonctionnalités 🌱
 
 - Création et gestion de promotion et de travailleurs.
