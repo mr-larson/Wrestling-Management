@@ -2,7 +2,10 @@
 
 namespace App\Models;
 
-use App\Enums\WorkersGender;
+use App\Enums\WorkerCategory;
+use App\Enums\WorkerGender;
+use App\Enums\WorkerStatus;
+use App\Enums\WorkerStyle;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -20,13 +23,30 @@ class Worker extends Model
     protected $table = 'workers';
 
     protected $fillable = [
-        'last_name',
-        'first_name',
+        'lastname',
+        'firstname',
+        'nickname',
         'gender',
-        'note',
+        'age',
+        'style',
+        'status',
+        'category',
+        'height',
+        'weight',
         'image',
+        'overall',
+        'popularity',
+        'endurance',
+        'promo_skill',
+        'wins',
+        'draws',
+        'losses',
+        'note',
         'user_id',
         'promotion_id',
+        'created_by',
+        'updated_by',
+        'deleted_by',
     ];
 
     protected $hidden = [
@@ -39,7 +59,10 @@ class Worker extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime',
-        'gender' => WorkersGender::class,
+        'gender' => WorkerGender::class,
+        'style' => WorkerStyle::class,
+        'status' => WorkerStatus::class,
+        'category' => WorkerCategory::class,
     ];
 
     public static function boot()
@@ -47,14 +70,14 @@ class Worker extends Model
         parent::boot();
 
         static::creating(function ($worker) {
-            $worker->last_name = strtoupper($worker->last_name);
+            $worker->lastname = strtoupper($worker->lastname);
         });
 
         static::updating(function ($worker) {
-            $worker->last_name = strtoupper($worker->last_name);
+            $worker->lastname = strtoupper($worker->lastname);
         });
     }
-    
+
     public function setImageAttribute($value)
     {
         if (is_string($value)) {

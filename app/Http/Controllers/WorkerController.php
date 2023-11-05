@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreWorkerRequest;
 use App\Http\Requests\UpdateWorkerRequest;
 use App\Models\Promotion;
 use App\Models\Worker;
@@ -27,10 +26,10 @@ class WorkerController extends Controller
             // Appliquer le filtre de promotion
             $query = $query->where('promotion_id', $promotionFilter);
         }
-        
+
         // Création d'une variable pour stocker l'ordre de tri
         $orderBy = $request->get('orderBy', 'score');
-        
+
         // On trie les résultats en fonction de l'ordre de tri choisi
         switch ($orderBy) {
             case 'created_at':
@@ -39,17 +38,29 @@ class WorkerController extends Controller
             case 'created_at-desc':
                 $query = $query->orderBy('created_at', 'desc');
                 break;
-            case 'first_name':
-                $query = $query->orderBy('first_name');
+            case 'firstname':
+                $query = $query->orderBy('firstname');
                 break;
-            case 'first_name-desc':
-                $query = $query->orderBy('first_name', 'desc');
+            case 'firstname-desc':
+                $query = $query->orderBy('firstname', 'desc');
                 break;
-            case 'last_name':
-                $query = $query->orderBy('last_name');
+            case 'lastname':
+                $query = $query->orderBy('lastname');
                 break;
-            case 'last_name-desc':
-                $query = $query->orderBy('last_name', 'desc');
+            case 'lastname-desc':
+                $query = $query->orderBy('lastname', 'desc');
+                break;
+            case 'nickname':
+                $query = $query->orderBy('nickname');
+                break;
+            case 'nickname-desc':
+                $query = $query->orderBy('nickname', 'desc');
+                break;
+            case 'overall':
+                $query = $query->orderBy('overall');
+                break;
+            case 'overall-desc':
+                $query = $query->orderBy('overall', 'desc');
                 break;
             case 'promotion':
                 $query = $query->orderBy('promotion_id');
@@ -67,7 +78,7 @@ class WorkerController extends Controller
                                ->orderBy('draws')
                                ->orderBy('losses', 'desc');
                 break;
-            
+
         }
         // Récupérer les résultats paginés (appends permet de conserver les paramètres de la requête)
         $workers = $query->paginate(30)->appends($request->query());
@@ -95,7 +106,7 @@ class WorkerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreWorkerRequest $request): RedirectResponse
+    public function store(UpdateWorkerRequest $request): RedirectResponse
     {
         // Création d'un nouvel objet Worker
         $worker = new Worker();

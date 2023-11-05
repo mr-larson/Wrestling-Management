@@ -5,16 +5,20 @@
     <div class="p-4 md:ml-56 mt-14">
         <div class="flex flex-wrap items-center justify-between p-4">
             <x-btn-create :href="route('worker.create')" :fas="'plus'"> Create </x-btn-create>
-            <x-success-message></x-success-message>       
+            <x-success-message></x-success-message>
             <x-search :action="route('worker.search')" name="search" :home="route('worker.index')"></x-search>
         </div>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <x-table>
                 <x-thead>
                     <tr class="shadow">
-                        <x-sortable-header :value="'last_name'" :route="'worker.index'" :orderBy="$orderBy">Last name
+                        <x-sortable-header :value="'lastname'" :route="'worker.index'" :orderBy="$orderBy">Last name
                         </x-sortable-header>
-                        <x-sortable-header :value="'first_name'" :route="'worker.index'" :orderBy="$orderBy">First name
+                        <x-sortable-header :value="'firstname'" :route="'worker.index'" :orderBy="$orderBy">First name
+                        </x-sortable-header>
+                        <x-sortable-header :value="'nickname'" :route="'worker.index'" :orderBy="$orderBy">Nick name
+                        </x-sortable-header>
+                        <x-sortable-header :value="'overall'" :route="'worker.index'" :orderBy="$orderBy">Overall
                         </x-sortable-header>
                         <x-th>Image</x-th>
                         <x-sortable-header :value="'promotion_id'" :route="'worker.index'" :orderBy="$orderBy">Promotion
@@ -31,14 +35,16 @@
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <x-td>
                                 <a href="{{ route('worker.show', ['worker' => $worker]) }}">
-                                    {{ $worker?->last_name }}
+                                    {{ $worker?->lastname }}
                                 </a>
                             </x-td>
                             <x-td>
                                 <a href="{{ route('worker.show', ['worker' => $worker]) }}">
-                                    {{ $worker?->first_name }}
+                                    {{ $worker?->firstname }}
                                 </a>
                             </x-td>
+                            <x-td>{{ $worker?->nickname }}</x-td>
+                            <x-td>{{ $worker?->overall }}</x-td>
                             <x-td>
                                 @if ($worker->image == null)
                                     <span> </span>
@@ -66,14 +72,14 @@
                                         <x-btn type="submit" name="result" value="loss" class="text-red-700 bg-red-100 hover:bg-red-300 focus:ring-red-300 border border-red-700">-</x-btn>
                                     </div>
                                 </form>
-                            </x-td>   
+                            </x-td>
                             <x-td>
                                 <form action="{{ route('worker.resetScore', ['worker' => $worker]) }}" method="POST">
                                     @csrf
                                     @method('PATCH')
                                     <x-btn type="submit" name="result" value="reset" class="hover:bg-slate-200 dark:hover:bg-slate-700 focus:ring-slate-300 border border-slate-300">Reset</x-btn>
                                 </form>
-                            </x-td>                   
+                            </x-td>
                             <x-td class="text-right">
                                 <x-btn-group>
                                     <x-btn-show :action="route('worker.show', ['worker' => $worker])"></x-btn-show>
@@ -85,7 +91,7 @@
                     @empty
                         <td colspan="7" class="px-3 py-4 text-center"> No yet</p>
                     @endforelse
-                </tbody>                
+                </tbody>
             </x-table>
         </div>
         <x-paginate>{{ $workers->links() }}</x-paginate>

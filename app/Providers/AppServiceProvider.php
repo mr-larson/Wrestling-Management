@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Promotion;
+use App\Models\Tournament;
+use App\Models\Worker;
+use App\Observers\UserActionObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Promotion::observe(UserActionObserver::class);
+        Worker::observe(UserActionObserver::class);
+        Tournament::observe(UserActionObserver::class);
     }
 }

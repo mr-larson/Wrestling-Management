@@ -4,7 +4,7 @@ namespace App\Enums;
 
 use App\Traits\WithDisplayName;
 
-enum WorkersGender: string
+enum WorkerGender: string
 {
     use WithDisplayName;
 

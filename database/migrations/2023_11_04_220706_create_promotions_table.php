@@ -14,11 +14,23 @@ return new class extends Migration
         Schema::create('promotions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description')->nullable();
+            $table->string('owner')->nullable();
+            $table->string('booker')->nullable();
+            $table->string('based_in')->nullable();
+            $table->string('country')->nullable();
+            $table->unsignedInteger('money')->nullable();
+            $table->string('style')->nullable();
+            $table->unsignedInteger('popularity')->nullable();
+            $table->date('founded')->nullable();
+            $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->foreignIdFor(\App\Models\User::class)->constrained()->cascadeOnUpdate()->restrictOnDelete();
             $table->timestamps();
             $table->softDeletes();
+            $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('updated_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->nullOnDelete();
+
         });
     }
 

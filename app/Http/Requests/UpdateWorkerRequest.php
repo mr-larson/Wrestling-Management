@@ -22,10 +22,21 @@ class UpdateWorkerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'last_name' => 'nullable|required_if:first_name,null|string|max:255',
-            'first_name' => 'nullable|required_if:last_name,null|string|max:255',
+            'lastname' => 'nullable|required_if:first_name,null|string|max:255',
+            'firstname' => 'nullable|required_if:last_name,null|string|max:255',
+            'nickname' => 'nullable|string|max:255',
             'gender' => 'nullable',
+            'age' => 'nullable|integer',
+            'style' => 'nullable',
+            'status' => 'nullable',
+            'category' => 'nullable',
+            'height' => 'nullable|integer',
+            'weight' => 'nullable|integer',
             'image' => 'nullable|image',
+            'overall' => 'nullable|integer',
+            'popularity' => 'nullable|integer',
+            'endurance' => 'nullable|integer',
+            'promo_skill' => 'nullable|integer',
             'user_id' => 'required|exists:users,id',
             'promotion_id' => 'nullable|exists:promotions,id',
         ];

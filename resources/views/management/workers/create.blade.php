@@ -2,7 +2,7 @@
     <x-slot name="header">
         <x-h1>{{ __('Workers') }}</x-h1>
     </x-slot>
-    <x-card-form class="bg-blue-">
+    <x-card-form>
         <section class="max-w-xl">
             <header>
                 <x-h2>
